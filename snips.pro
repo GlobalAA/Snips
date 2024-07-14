@@ -9,7 +9,7 @@ CONFIG += c++17 cmdline
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        config.cpp \
+        sources/config.cpp \
         main.cpp
 
 # Default rules for deployment.
@@ -18,11 +18,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    qrc.qrc
+    resources/qrc.qrc
 
 HEADERS += \
-    config.hpp
+    headers/config.hpp
 
 DISTFILES += \
     .gitignore \
+    README.md \
     build/Desktop_Qt_6_8_0-Debug/cfg.json

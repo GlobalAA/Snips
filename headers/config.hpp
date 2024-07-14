@@ -17,6 +17,7 @@ public:
     Config(QSystemTrayIcon &trayIcon);
     struct ConfigFields;
     struct SiteFields;
+    struct CommandFields;
 
     Config::ConfigFields parseConfig();
 private:
@@ -30,12 +31,20 @@ struct Config::SiteFields
     QString url;
 };
 
+struct Config::CommandFields
+{
+    QString title;
+    QString command;
+};
+
 struct Config::ConfigFields
 {
     std::vector<Config::SiteFields> sites;
+    std::vector<Config::CommandFields> cmds;
 };
 
 void from_json(const json& j, Config::SiteFields& s);
+void from_json(const json& j, Config::CommandFields& cmd);
 void from_json(const json& j, Config::ConfigFields& c);
 
 #endif // CONFIG_HPP

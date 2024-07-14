@@ -1,4 +1,4 @@
-#include "config.hpp"
+#include "headers/config.hpp"
 
 Config::Config(QSystemTrayIcon &p_trayIcon) : trayIcon(p_trayIcon) {}
 
@@ -36,7 +36,14 @@ void from_json(const json& j, Config::SiteFields& s)
     s.url = QString::fromStdString(j.at("url").get<std::string>());
 }
 
+void from_json(const json& j, Config::CommandFields& cmd)
+{
+    cmd.title = QString::fromStdString(j.at("title").get<std::string>());
+    cmd.command = QString::fromStdString(j.at("command").get<std::string>());
+}
+
 void from_json(const json& j, Config::ConfigFields& c)
 {
     j.at("sites").get_to(c.sites);
+    j.at("commands").get_to(c.cmds);
 }
